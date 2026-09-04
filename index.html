@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Arynelys Naryxel — NELYS</title>
+<meta name="description" content="Arynelys Naryxel (NELYS) é um assistente local de IA para criação, revisão e publicação de conteúdo do próprio usuário.">
+
+<style>
+:root {
+  color-scheme: dark;
+  --bg:#0b0f14;
+  --panel:#111821;
+  --text:#edf3f8;
+  --muted:#9fb0c0;
+  --accent:#7dd3fc;
+  --border:#263241;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:linear-gradient(180deg,#0b0f14,#0e141c 60%,#0b0f14);
+  color:var(--text);
+  line-height:1.6;
+}
+.wrap{max-width:900px;margin:0 auto;padding:32px 20px 56px}
+header{
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+  padding:14px 0 28px;border-bottom:1px solid var(--border);
+}
+.brand{font-weight:800;font-size:1.15rem;letter-spacing:.3px}
+nav a{color:var(--muted);text-decoration:none;margin-left:16px}
+nav a:hover{color:var(--accent)}
+.hero{padding:54px 0 24px}
+h1{font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:0 0 18px}
+h2{margin-top:34px;font-size:1.35rem}
+p,li{color:var(--muted)}
+.card{
+  background:rgba(17,24,33,.78);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px;
+  margin:18px 0;
+}
+.badge{
+  display:inline-block;padding:6px 10px;border:1px solid var(--border);
+  border-radius:999px;color:var(--accent);font-size:.9rem;margin-bottom:14px
+}
+a{color:var(--accent)}
+footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--border);color:var(--muted);font-size:.92rem}
+code{background:#0a1118;border:1px solid var(--border);padding:.1em .35em;border-radius:6px;color:#d8f3ff}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">Arynelys Naryxel / NELYS</div>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="privacy/">Privacidade</a>
+    <a href="terms/">Termos</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <span class="badge">Aplicativo desktop para Windows</span>
+  <h1>Arynelys Naryxel</h1>
+  <p>NELYS é um assistente local de inteligência artificial criado para ajudar o usuário a analisar, criar, revisar e preparar conteúdo digital.</p>
+</section>
+
+<div class="card">
+  <h2>O que o aplicativo faz</h2>
+  <ul>
+    <li>Analisa vídeos locais e auxilia na criação de cortes.</li>
+    <li>Ajuda a gerar títulos, descrições, legendas, hashtags e sugestões de capa.</li>
+    <li>Permite que o usuário conecte contas compatíveis por OAuth oficial.</li>
+    <li>Prepara publicações e solicita confirmação explícita antes de uma postagem.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>Integração com TikTok</h2>
+  <p>Arynelys Naryxel usa o Login Kit para que o próprio usuário autorize a conta TikTok sem fornecer sua senha ao aplicativo.</p>
+  <p>Quando habilitado pelo usuário, o aplicativo pode usar a Content Posting API para enviar conteúdo criado ou selecionado pelo próprio usuário. Antes da publicação, o conteúdo, a legenda e as opções disponíveis são apresentados para revisão.</p>
+</div>
+
+<div class="card">
+  <h2>Privacidade por padrão</h2>
+  <p>O aplicativo foi projetado para executar seu processamento principal localmente. Credenciais e tokens de integração são armazenados localmente no computador do usuário e protegidos pelos mecanismos disponíveis no Windows.</p>
+  <p>Consulte a <a href="privacy/">Política de Privacidade</a> e os <a href="terms/">Termos de Serviço</a>.</p>
+</div>
+
+<footer>
+  <p>Projeto independente. Arynelys Naryxel / NELYS não é afiliada, patrocinada ou endossada pelo TikTok.</p>
+  <p>Contato e suporte: <a href="https://github.com/naryxelarynelys-stack/Arynelys-Naryxel/issues">GitHub Issues</a>.</p>
+</footer>
+</div>
+</body>
+</html>
