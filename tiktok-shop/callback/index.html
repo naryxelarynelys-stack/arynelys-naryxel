@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src http://127.0.0.1:43867; img-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none'">
+  <title>NELYS — Retorno do TikTok Shop</title>
+  <style>
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(145deg,#07101d,#111033);color:#eef3ff;font:16px/1.5 system-ui,-apple-system,'Segoe UI',sans-serif;min-height:100vh;display:grid;place-items:center;padding:20px}
+    main{max-width:540px;width:100%;background:#101a2d;border:1px solid #374064;border-radius:18px;padding:30px;box-shadow:0 18px 70px #01031399}
+    h1{margin:0 0 12px;font-size:24px} h1 span{color:#a88bff} p{color:#bec9de}
+    .row{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0} button{border:0;border-radius:10px;padding:13px 17px;background:#8054e9;color:white;font-weight:700;cursor:pointer} button.secondary{background:#2c415f}
+    #status{color:#87ebc0;min-height:2em;font-weight:600} small{color:#a9b6ca;display:block}
+  </style>
+</head>
+<body>
+<main>
+  <h1>NELYS <span>× TikTok Shop</span></h1>
+  <p>Esta página entrega o código temporário de autorização somente ao programa NELYS aberto no seu próprio computador. Ela não solicita sua senha.</p>
+  <div id="status" role="status" aria-live="polite">Verificando o retorno da autorização...</div>
+  <div class="row">
+    <button id="retry" type="button">Conectar à NELYS</button>
+    <button id="copy" type="button" class="secondary">Copiar retorno para uso manual</button>
+  </div>
+  <small>Se não conectar, deixe a janela "Autorizar meu TikTok Shop" aberta na NELYS e copie o retorno para o campo manual. Não envie esse endereço a outras pessoas: ele contém um código de uso único.</small>
+</main>
+<script>
+(() => {
+  'use strict';
+  // All work is local. Never send the code to GitHub, third-party analytics,
+  // or the NELYS normal TikTok Developer integration.
+  const callback = window.location.href;
+  const params = new URL(callback).searchParams;
+  const status = document.getElementById('status');
+  const retry = document.getElementById('retry');
+  const copy = document.getElementById('copy');
+  // Prevent incidental sharing of the single-use code from the address bar.
+  history.replaceState(null, '', location.pathname);
+  let valid = params.has('code') && params.has('state') && !params.has('error');
+  if (!valid) {
+    status.textContent = params.has('error') ? 'O TikTok Shop não concedeu a autorização.' : 'Nenhum código de autorização foi recebido.';
+    retry.disabled = true;
+    copy.disabled = true;
+    return;
+  }
+  let connecting = false;
+  async function send() {
+    if (connecting) return;
+    connecting = true;
+    status.textContent = 'Enviando retorno ao programa NELYS neste computador...';
+    try {
+      const response = await fetch('http://127.0.0.1:43867/callback', {
+        method: 'POST',
+        mode: 'cors',
+        credentials: 'omit',
+        referrerPolicy: 'no-referrer',
+        cache: 'no-store',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({url: callback})
+      });
+      if (!response.ok) throw new Error('local receiver unavailable');
+      status.textContent = 'Retorno entregue! A NELYS verificará sua autorização.';
+      retry.disabled = true;
+      copy.disabled = true;
+    } catch (_) {
+      status.textContent = 'A conexão local não foi concluída. Clique novamente ou copie o retorno para a NELYS.';
+    } finally {
+      connecting = false;
+    }
+  }
+  retry.addEventListener('click', send);
+  copy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(callback);
+      status.textContent = 'Retorno copiado. Cole na janela TikTok Shop da NELYS e clique em Validar retorno e conectar.';
+    } catch (_) {
+      // Browsers may block clipboard access. A user-selected text field
+      // is provided only on explicit click, never sent to another server.
+      const field=document.createElement('textarea');
+      field.value=callback;
+      field.setAttribute('readonly','');
+      field.style.cssText='position:fixed;bottom:0;left:0;width:100%;z-index:5';
+      document.body.appendChild(field);
+      field.select();
+      status.textContent='Selecione e copie o endereço exibido; depois volte à NELYS.';
+    }
+  });
+  send();
+})();
+</script>
+</body>
+</html>

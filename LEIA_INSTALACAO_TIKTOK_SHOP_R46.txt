@@ -1,0 +1,32 @@
+NELYS R46 - RETORNO OAUTH TIKTOK SHOP (BETA)
+==========================================
+O fluxo do TikTok Developer / Content Posting aprovado permanece INALTERADO.
+
+1) Publique a pasta "tiktok-shop/callback/" do diretório
+   NELYS_CORE_R4_9_16/site/github_pages/ na raiz de seu repositório
+   GitHub Pages "arynelys-naryxel".
+2) Confirme, sem códigos e sem tokens, que esta URL abre a nova página:
+   https://naryxelarynelys-stack.github.io/arynelys-naryxel/tiktok-shop/callback/
+3) No Partner Center (TikTok SHOP, não TikTok Developer), informe EXATAMENTE
+   a URL acima no campo URL de redirecionamento.
+4) Na NELYS R46, configure App Key e App Secret do TikTok SHOP em
+   Integrações / APIs (somente sessão), abra TikTok Shop e autorize.
+5) Mantenha a NELYS aberta. O navegador tenta transmitir a URL de retorno
+   a http://127.0.0.1:43867/callback (apenas computador local). Se o navegador
+   bloquear acesso à rede privada ou a porta estiver indisponível, use
+   "Copiar retorno para uso manual" na página e cole-o na NELYS.
+6) O App Secret nunca aparece na página estática. A troca por tokens acontece
+   na aplicação desktop, usando HTTPS diretamente com TikTok Shop.
+
+SEGURANÇA E LIMITAÇÕES
+- Não hospede segredos, tokens ou URLs com code no GitHub.
+- A URL de retorno contém um código privado de uso único: não a compartilhe.
+- Não finalize autorização real antes de obter a App Key, o App Secret e as
+  permissões necessárias do TikTok Shop Partner Center.
+- A aprovação da Content Posting API não concede acesso à TikTok Shop.
+- Apps personalizadas para vendedores podem não ter a autorização de criador.
+- O suporte do navegador a localhost a partir de GitHub Pages varia; existe
+  um modo manual porque a entrega automática não é garantida.
+- Ainda não foi realizada autorização com conta real; testes são locais.
+- TikTok Shop pode exigir backend HTTPS próprio para aprovar o aplicativo.
+- Não altera os arquivos já publicados no GitHub Pages automaticamente.
